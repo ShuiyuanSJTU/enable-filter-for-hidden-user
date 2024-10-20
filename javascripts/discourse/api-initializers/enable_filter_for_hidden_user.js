@@ -2,9 +2,6 @@ import { apiInitializer } from "discourse/lib/api";
 import { computed } from "@ember/object";
 
 export default apiInitializer("1.8.0", (api) => {
-  console.log("enable_newfilter: hello world from api initializer!");
-  console.log("Theme Prefix:", themePrefix());
-  console.log("Debug Translation:", I18n.t(themePrefix("debug")));
   api.modifyClass("component:user-card-contents", {
     get enoughPostsForFiltering() {
       return true;

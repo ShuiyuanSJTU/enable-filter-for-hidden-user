@@ -2,4 +2,4 @@
 
 **Theme Summary**
 
-For more information, please see: **url to meta topic**
+Enable filter buttons for all users in *topic*, even if they hide their public profile.
