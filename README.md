@@ -1,4 +1,4 @@
-# enable_filter_for_hidden_user
+# enable-filter-for-hidden-user
 
 **Theme Summary**
 
