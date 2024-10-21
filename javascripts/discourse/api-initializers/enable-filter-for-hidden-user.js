@@ -1,5 +1,6 @@
 import { computed } from "@ember/object";
 import { apiInitializer } from "discourse/lib/api";
+import I18n from "I18n";
 
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
