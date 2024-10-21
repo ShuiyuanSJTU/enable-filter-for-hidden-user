@@ -1,5 +1,5 @@
-import { apiInitializer } from "discourse/lib/api";
 import { computed } from "@ember/object";
+import { apiInitializer } from "discourse/lib/api";
 
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
@@ -18,6 +18,5 @@ export default apiInitializer("1.8.0", (api) => {
         return I18n.t("topic.filter_to", { username, count });
       }
     }),
-
   });
 });
