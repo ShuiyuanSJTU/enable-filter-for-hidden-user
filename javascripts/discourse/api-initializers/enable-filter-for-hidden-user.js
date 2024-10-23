@@ -5,18 +5,12 @@ import I18n from "I18n";
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
     enoughPostsForFiltering: computed("topicPostCount", "post", function () {
-      if (this.post.post_number !== 1) {
-        return true;
-      } else {
-        return this.topicPostCount >= 2;
-      }
+      return true;
     }),
 
     filterPostsLabel: computed("username", "topicPostCount", function () {
       const username = this.username;
       const count = this.topicPostCount;
-
-      // 自定义显示文案
       if (!count) {
         return I18n.t(themePrefix("filter_all_posts"));
       } else {
