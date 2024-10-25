@@ -4,6 +4,7 @@ import I18n from "I18n";
 
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
+    pluginId: "enable-filter-for-hidden-user",
     enoughPostsForFiltering: computed("topicPostCount", "post", function () {
       return true;
     }),
