@@ -20,11 +20,14 @@ export default apiInitializer("1.8.0", (api) => {
       "viewingTopic",
       "postStream.hasNoFilters",
       "avatarClicked",
+      "enoughPostsForFiltering",
       function () {
+        // Avatar click always shows the filter.
+        // For mention click, only show if enoughPostsForFiltering
         return (
           this.viewingTopic &&
           this.postStream.hasNoFilters &&
-          this.avatarClicked
+          (this.avatarClicked || this.enoughPostsForFiltering)
         );
       }
     ),
