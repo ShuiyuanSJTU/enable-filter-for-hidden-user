@@ -5,8 +5,19 @@ import I18n from "I18n";
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
     pluginId: "enable-filter-for-hidden-user",
-    enoughPostsForFiltering: computed("topicPostCount", "post", function () {
-      return true;
+    avatarClicked: false,
+    _show(username, target, event) {
+      let isAvatarClick = false;
+      if (this.avatarSelector) {
+        isAvatarClick = !!event.target.closest(this.avatarSelector);
+      }
+      this.set("avatarClicked", isAvatarClick);
+      return this._super(username, target, event);
+    },
+
+    // eslint-disable-next-line ember/require-computed-macros
+    showFilter: computed("viewingTopic", "postStream.hasNoFilters", "avatarClicked", function() {
+      return this.viewingTopic && this.postStream.hasNoFilters && this.avatarClicked;
     }),
 
     filterPostsLabel: computed("username", "topicPostCount", function () {
