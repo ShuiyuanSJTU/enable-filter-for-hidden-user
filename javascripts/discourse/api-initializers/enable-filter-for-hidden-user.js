@@ -16,9 +16,18 @@ export default apiInitializer("1.8.0", (api) => {
     },
 
     // eslint-disable-next-line ember/require-computed-macros
-    showFilter: computed("viewingTopic", "postStream.hasNoFilters", "avatarClicked", function() {
-      return this.viewingTopic && this.postStream.hasNoFilters && this.avatarClicked;
-    }),
+    showFilter: computed(
+      "viewingTopic",
+      "postStream.hasNoFilters",
+      "avatarClicked",
+      function () {
+        return (
+          this.viewingTopic &&
+          this.postStream.hasNoFilters &&
+          this.avatarClicked
+        );
+      }
+    ),
 
     filterPostsLabel: computed("username", "topicPostCount", function () {
       const username = this.username;
