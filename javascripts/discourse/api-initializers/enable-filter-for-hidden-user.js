@@ -5,29 +5,21 @@ import I18n from "I18n";
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
     pluginId: "enable-filter-for-hidden-user",
-    avatarClicked: false,
-    _show(username, target, event) {
-      let isAvatarClick = false;
-      if (this.avatarSelector) {
-        isAvatarClick = !!event.target.closest(this.avatarSelector);
-      }
-      this.set("avatarClicked", isAvatarClick);
-      return this._super(username, target, event);
-    },
 
-    // eslint-disable-next-line ember/require-computed-macros
     showFilter: computed(
       "viewingTopic",
       "postStream.hasNoFilters",
-      "avatarClicked",
       "enoughPostsForFiltering",
+      "username",
+      "post.username",
       function () {
-        // Avatar click always shows the filter.
+        // When post owner is clicked, always show filter button.
         // For mention click, only show if enoughPostsForFiltering
+        const postOwnerClicked = this.username === this.post.username;
         return (
           this.viewingTopic &&
           this.postStream.hasNoFilters &&
-          (this.avatarClicked || this.enoughPostsForFiltering)
+          (postOwnerClicked || this.enoughPostsForFiltering)
         );
       }
     ),
