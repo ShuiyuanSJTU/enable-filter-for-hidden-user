@@ -5,9 +5,24 @@ import I18n from "I18n";
 export default apiInitializer("1.8.0", (api) => {
   api.modifyClass("component:user-card-contents", {
     pluginId: "enable-filter-for-hidden-user",
-    enoughPostsForFiltering: computed("topicPostCount", "post", function () {
-      return true;
-    }),
+
+    showFilter: computed(
+      "viewingTopic",
+      "postStream.hasNoFilters",
+      "enoughPostsForFiltering",
+      "username",
+      "post.username",
+      function () {
+        // When post owner is clicked, always show filter button.
+        // For mention click, only show if enoughPostsForFiltering
+        const postOwnerClicked = this.username === this.post.username;
+        return (
+          this.viewingTopic &&
+          this.postStream.hasNoFilters &&
+          (postOwnerClicked || this.enoughPostsForFiltering)
+        );
+      }
+    ),
 
     filterPostsLabel: computed("username", "topicPostCount", function () {
       const username = this.username;

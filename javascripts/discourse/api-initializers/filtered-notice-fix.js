@@ -1,4 +1,3 @@
-// /javascripts/discourse/initializers/custom-filtered-notice.js
 import { h } from "virtual-dom";
 import { apiInitializer } from "discourse/lib/api";
 import { avatarFor } from "discourse/widgets/post";
