@@ -13,11 +13,14 @@ export default apiInitializer("1.8.0", (api) => {
       "username",
       "post.username",
       function () {
+        // Check viewingTopic to ensure this.post is defined
+        if (!this.viewingTopic) {
+          return false;
+        }
         // When post owner is clicked, always show filter button.
         // For mention click, only show if enoughPostsForFiltering
         const postOwnerClicked = this.username === this.post.username;
         return (
-          this.viewingTopic &&
           this.postStream.hasNoFilters &&
           (postOwnerClicked || this.enoughPostsForFiltering)
         );
