@@ -1,7 +1,7 @@
 import { h } from "virtual-dom";
 import { apiInitializer } from "discourse/lib/api";
 import { avatarFor } from "discourse/widgets/post";
-import I18n from "I18n";
+import { i18n } from "discourse-i18n";
 
 export default apiInitializer("1.8.0", (api) => {
   api.reopenWidget("posts-filtered-notice", {
@@ -22,7 +22,7 @@ export default apiInitializer("1.8.0", (api) => {
         return [
           h(
             "span.filtered-replies-viewing",
-            I18n.t("post.filtered_replies.viewing_posts_by", {
+            i18n("post.filtered_replies.viewing_posts_by", {
               post_count: userPostsCount,
             })
           ),
